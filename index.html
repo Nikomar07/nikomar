@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nikomar — Création de sites web</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #08080d;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 8%;
+
+            background: rgba(8, 8, 13, 0.8);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #ff1493
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+
+            width: 0;
+            height: 2px;
+
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #ff1493
+            );
+
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.6);
+
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff4fd8;
+            text-shadow: 0 0 10px rgba(255, 79, 216, 0.5);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 120px 20px 80px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(138,43,226,0.18),
+                    transparent 40%
+                );
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 10vw, 120px);
+            letter-spacing: 8px;
+
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #ff1493
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            margin-top: 10px;
+            font-size: clamp(25px, 4vw, 45px);
+        }
+
+        .hero p {
+            margin-top: 20px;
+            max-width: 650px;
+            color: #aaa;
+            font-size: 18px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            color: white;
+
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #ff1493
+            );
+
+            box-shadow: 0 0 25px rgba(255,20,147,0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 35px rgba(255,20,147,0.35);
+        }
+
+        .btn-secondary {
+            color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .btn-secondary:hover {
+            border-color: #ff4fd8;
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+        }
+
+        .section-title p {
+            color: #999;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 25px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.06),
+                rgba(255,255,255,0.015)
+            );
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .card > * {
+            position: relative;
+            z-index: 3;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            top: -120%;
+            left: -120%;
+
+            width: 250%;
+            height: 250%;
+
+            background: linear-gradient(
+                120deg,
+                transparent 42%,
+                rgba(255,255,255,0.18) 50%,
+                transparent 58%
+            );
+
+            transform: rotate(10deg);
+
+            transition: 0.8s ease;
+
+            pointer-events: none;
+
+            z-index: 2;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+
+            border-color: rgba(255,79,216,0.6);
+
+            box-shadow:
+                0 20px 50px rgba(138,43,226,0.2),
+                0 0 25px rgba(255,20,147,0.08);
+        }
+
+        .card:hover::before {
+            top: -10%;
+            left: -10%;
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #aaa;
+        }
+
+        /* =========================
+           OFFRES
+        ========================= */
+
+        .offers {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 25px;
+        }
+
+        .offer {
+            padding: 40px 30px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(138,43,226,0.12),
+                    rgba(255,20,147,0.04)
+                );
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            text-align: center;
+
+            transition: 0.35s;
+        }
+
+        .offer:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,79,216,0.5);
+        }
+
+        .offer h3 {
+            font-size: 25px;
+        }
+
+        .price {
+            font-size: 40px;
+            font-weight: bold;
+
+            margin: 20px 0;
+
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #ff1493
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .offer p {
+            color: #aaa;
+        }
+
+        /* =========================
+           POURQUOI NIKOMAR
+        ========================= */
+
+        .why {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+        }
+
+        .why-box {
+            padding: 30px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.03);
+
+            border: 1px solid rgba(255,255,255,0.06);
+
+            transition: 0.3s;
+        }
+
+        .why-box:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,79,216,0.4);
+        }
+
+        .why-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .why-box p {
+            color: #999;
+        }
+
+        /* =========================
+           REALISATIONS
+        ========================= */
+
+        .projects {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 30px;
+        }
+
+        .project {
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            background: #111118;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            transition: 0.35s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,79,216,0.5);
+        }
+
+        .browser {
+            height: 220px;
+
+            background: #181820;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .browser-top {
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 0 12px;
+
+            background: #101016;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #555;
+        }
+
+        .address {
+            margin-left: 8px;
+
+            flex: 1;
+
+            height: 20px;
+
+            border-radius: 5px;
+
+            background: #20202a;
+
+            color: #777;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+
+            padding-left: 10px;
+        }
+
+        .preview {
+            height: calc(100% - 35px);
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .preview h3 {
+            font-size: 25px;
+            margin-bottom: 5px;
+        }
+
+        .preview p {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        .construction {
+            background:
+                linear-gradient(
+                    135deg,
+                    #25202c,
+                    #17131f
+                );
+        }
+
+        .elegance {
+            background:
+                linear-gradient(
+                    135deg,
+                    #30251e,
+                    #17120f
+                );
+        }
+
+        .agency {
+            background:
+                linear-gradient(
+                    135deg,
+                    #161f31,
+                    #0e1420
+                );
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .project-info p {
+            color: #999;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+
+            margin-top: 15px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.06);
+
+            color: #bbb;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            max-width: 850px;
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 18px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            background: rgba(255,255,255,0.04);
+
+            color: white;
+
+            outline: none;
+
+            font-family: inherit;
+
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #ff4fd8;
+
+            box-shadow:
+                0 0 15px rgba(255,20,147,0.12);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        form button {
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #ff1493
+            );
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                opacity 0.25s ease;
+        }
+
+        form button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(255,20,147,0.3);
+        }
+
+        form button:active {
+            transform: scale(0.97);
+        }
+
+        form button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 35px 20px;
+
+            text-align: center;
+
+            color: #777;
+
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* =========================
+           ANIMATION SCROLL
+        ========================= */
+
+        .scroll-hidden {
+            opacity: 0;
+
+            transform: translateY(50px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .scroll-hidden.visible {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: 4px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            NIKOMAR
+        </div>
+
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#offres">Offres</a>
+            <a href="#realisations">Réalisations</a>
+            <a href="#about">À propos</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <h1>NIKOMAR</h1>
+
+        <h2>Des sites qui donnent envie de vous choisir.</h2>
+
+        <p>
+            Je crée des sites web modernes, rapides et professionnels
+            pour aider les entreprises à développer leur présence en ligne.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#contact" class="btn btn-primary">
+                Créer mon site
+            </a>
+
+            <a href="#realisations" class="btn btn-secondary">
+                Voir mes réalisations
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICES
+    ========================= -->
+
+    <section id="services">
+
+        <div class="section-title">
+
+            <h2>Mes services</h2>
+
+            <p>
+                Tout ce qu'il faut pour avoir une présence professionnelle en ligne.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Création de site</h3>
+
+                <p>
+                    Création de sites vitrines modernes, adaptés à votre activité
+                    et accessibles sur ordinateur, tablette et téléphone.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Design moderne</h3>
+
+                <p>
+                    Une interface propre, professionnelle et pensée pour donner
+                    confiance à vos visiteurs.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Optimisation mobile</h3>
+
+                <p>
+                    Votre site reste agréable à utiliser sur tous les écrans.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Accompagnement</h3>
+
+                <p>
+                    Je vous accompagne dans la création et l'amélioration
+                    de votre présence en ligne.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         OFFRES
+    ========================= -->
+
+    <section id="offres">
+
+        <div class="section-title">
+
+            <h2>Mes offres</h2>
+
+            <p>
+                Des formules simples pour répondre à différents besoins.
+            </p>
+
+        </div>
+
+
+        <div class="offers">
+
+            <div class="offer">
+
+                <h3>Starter</h3>
+
+                <div class="price">
+                    149 €
+                </div>
+
+                <p>
+                    Site vitrine simple et professionnel.
+                </p>
+
+            </div>
+
+
+            <div class="offer">
+
+                <h3>Pro</h3>
+
+                <div class="price">
+                    299 €
+                </div>
+
+                <p>
+                    Site plus complet avec plusieurs sections
+                    et une présentation avancée.
+                </p>
+
+            </div>
+
+
+            <div class="offer">
+
+                <h3>Premium</h3>
+
+                <div class="price">
+                    499 €
+                </div>
+
+                <p>
+                    Site complet avec design personnalisé
+                    et fonctionnalités avancées.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         POURQUOI NIKOMAR
+    ========================= -->
+
+    <section>
+
+        <div class="section-title">
+
+            <h2>Pourquoi Nikomar ?</h2>
+
+            <p>
+                Un site doit être beau, mais surtout utile.
+            </p>
+
+        </div>
+
+
+        <div class="why">
+
+            <div class="why-box">
+
+                <h3>Design professionnel</h3>
+
+                <p>
+                    Une identité visuelle moderne pour mettre votre activité
+                    en valeur.
+                </p>
+
+            </div>
+
+
+            <div class="why-box">
+
+                <h3>Simple et efficace</h3>
+
+                <p>
+                    Les visiteurs trouvent rapidement les informations
+                    importantes.
+                </p>
+
+            </div>
+
+
+            <div class="why-box">
+
+                <h3>Adapté au mobile</h3>
+
+                <p>
+                    Une expérience pensée pour tous les appareils.
+                </p>
+
+            </div>
+
+
+            <div class="why-box">
+
+                <h3>À votre image</h3>
+
+                <p>
+                    Chaque projet peut être personnalisé selon votre activité.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         REALISATIONS
+    ========================= -->
+
+    <section id="realisations">
+
+        <div class="section-title">
+
+            <h2>Mes réalisations</h2>
+
+            <p>
+                Quelques exemples de projets que Nikomar peut réaliser.
+            </p>
+
+        </div>
+
+
+        <div class="projects">
+
+
+            <!-- PROJET 1 -->
+
+            <div class="project">
+
+                <div class="browser">
+
+                    <div class="browser-top">
+
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+
+                        <div class="address">
+                            novaconstruction.fr
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview construction">
+
+                        <h3>Nova Construction</h3>
+
+                        <p>
+                            Construisons vos projets.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <h3>Nova Construction</h3>
+
+                    <p>
+                        Exemple de site vitrine pour une entreprise du bâtiment.
+                    </p>
+
+                    <div class="tags">
+
+                        <span class="tag">Site vitrine</span>
+                        <span class="tag">Responsive</span>
+                        <span class="tag">Design</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJET 2 -->
+
+            <div class="project">
+
+                <div class="browser">
+
+                    <div class="browser-top">
+
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+
+                        <div class="address">
+                            studio-elegance.fr
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview elegance">
+
+                        <h3>Studio Élégance</h3>
+
+                        <p>
+                            Beauté & bien-être.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <h3>Studio Élégance</h3>
+
+                    <p>
+                        Exemple de site élégant pour un institut de beauté.
+                    </p>
+
+                    <div class="tags">
+
+                        <span class="tag">Design</span>
+                        <span class="tag">Mobile</span>
+                        <span class="tag">Vitrine</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJET 3 -->
+
+            <div class="project">
+
+                <div class="browser">
+
+                    <div class="browser-top">
+
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+
+                        <div class="address">
+                            digital-agency.fr
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview agency">
+
+                        <h3>Digital Agency</h3>
+
+                        <p>
+                            Votre présence digitale.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <h3>Digital Agency</h3>
+
+                    <p>
+                        Exemple de site moderne pour une agence digitale.
+                    </p>
+
+                    <div class="tags">
+
+                        <span class="tag">Moderne</span>
+                        <span class="tag">Responsive</span>
+                        <span class="tag">Premium</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         À PROPOS
+    ========================= -->
+
+    <section id="about">
+
+        <div class="about">
+
+            <div class="section-title">
+
+                <h2>À propos de Nikomar</h2>
+
+            </div>
+
+            <p>
+                Nikomar est un projet dédié à la création de sites web modernes
+                et professionnels. L'objectif est simple : aider les entreprises
+                et indépendants à avoir une présence en ligne qui inspire confiance
+                et donne envie de les contacter.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact">
+
+        <div class="contact">
+
+            <div class="section-title">
+
+                <h2>Parlons de votre projet</h2>
+
+                <p>
+                    Expliquez-moi votre projet et je vous répondrai rapidement.
+                </p>
+
+            </div>
+
+
+            <form
+                id="contactForm"
+                action="https://formsubmit.co/nikomar.contact@gmail.com"
+                method="POST"
+            >
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Votre nom"
+                    required
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Votre adresse email"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="subject"
+                    placeholder="Sujet"
+                    required
+                >
+
+                <textarea
+                    name="message"
+                    placeholder="Parlez-moi de votre projet..."
+                    required
+                ></textarea>
+
+                <input
+                    type="hidden"
+                    name="_captcha"
+                    value="false"
+                >
+
+                <button type="submit">
+                    Envoyer ma demande
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © 2026 Nikomar — Création de sites web
+
+    </footer>
+
+
+    <!-- =========================
+         ANIMATION SCROLL
+    ========================= -->
+
+    <script>
+
+        const elements = document.querySelectorAll(
+            ".card, .offer, .why-box, .project, .about, .contact"
+        );
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.15
+        });
+
+
+        elements.forEach(element => {
+
+            element.classList.add("scroll-hidden");
+
+            observer.observe(element);
+
+        });
+
+    </script>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
