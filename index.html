@@ -68,6 +68,14 @@
             gap: 30px;
         }
 
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.menu-toggle {
+    display: none;
+}
         nav a {
             color: #ddd;
             text-decoration: none;
@@ -726,29 +734,59 @@
            MOBILE
         ========================= */
 
-        @media (max-width: 700px) {
+      @media (max-width: 700px) {
 
-            header {
-                padding: 15px 5%;
-            }
+    header {
+        padding: 15px 5%;
+    }
 
-            nav {
-                gap: 12px;
-            }
+    nav {
+        position: relative;
+    }
 
-            nav a {
-                font-size: 12px;
-            }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 45px;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(15, 15, 25, 0.98);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 10px;
+        min-width: 170px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
 
-            section {
-                padding: 80px 5%;
-            }
+    .nav-links.active {
+        display: flex;
+    }
 
-            .hero h1 {
-                letter-spacing: 4px;
-            }
+    .nav-links a {
+        font-size: 14px;
+        padding: 12px 15px;
+        white-space: nowrap;
+    }
 
-        }
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    section {
+        padding: 80px 5%;
+    }
+
+    .hero h1 {
+        letter-spacing: 4px;
+    }
+
+}
 
     </style>
 </head>
@@ -765,13 +803,17 @@
             NIKOMAR
         </div>
 
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#offres">Offres</a>
-            <a href="#realisations">Réalisations</a>
-            <a href="#about">À propos</a>
-            <a href="#contact">Contact</a>
-        </nav>
+       <nav>
+    <button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#offres">Offres</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#about">À propos</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
     </header>
 
