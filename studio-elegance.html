@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Élégance — Beauté & Bien-être</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#fbf7f3;color:#241c18;line-height:1.6}
+header{position:sticky;top:0;z-index:10;background:rgba(251,247,243,.94);backdrop-filter:blur(12px);border-bottom:1px solid #eadfd7;padding:18px 8%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:21px;font-weight:800;letter-spacing:2px}
+nav{display:flex;gap:26px}
+nav a{color:#4f4039;text-decoration:none;font-size:14px}
+nav a:hover{color:#9b6b52}
+.hero{min-height:82vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 20px;background:radial-gradient(circle at 50% 25%,#ead7ca,transparent 48%)}
+.hero-box{max-width:760px}
+.eyebrow{letter-spacing:4px;text-transform:uppercase;font-size:12px;color:#9b6b52;margin-bottom:18px}
+h1{font-family:Georgia,serif;font-size:clamp(48px,8vw,88px);font-weight:500;line-height:1.05}
+.hero p{max-width:600px;margin:25px auto;color:#6e5d54;font-size:18px}
+.btn{display:inline-block;padding:13px 24px;background:#241c18;color:white;text-decoration:none;border-radius:4px;margin-top:12px}
+section{padding:90px 8%}
+.title{text-align:center;max-width:650px;margin:0 auto 50px}
+.title h2{font-family:Georgia,serif;font-size:40px;font-weight:500}
+.title p{color:#75665e;margin-top:10px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1050px;margin:auto}
+.card{padding:34px;background:white;border:1px solid #eadfd7;border-radius:10px}
+.card h3{font-family:Georgia,serif;font-size:24px;margin-bottom:10px}
+.card p{color:#75665e}
+.about{max-width:850px;margin:auto;text-align:center}
+.about p{color:#75665e;font-size:18px}
+.contact{text-align:center;background:#eee3da}
+footer{text-align:center;padding:30px;color:#8b7a70;border-top:1px solid #eadfd7;font-size:13px}
+.demo{position:fixed;bottom:18px;right:18px;background:#241c18;color:white;padding:9px 13px;border-radius:20px;font-size:11px;opacity:.85}
+@media(max-width:700px){header{padding:16px 5%;flex-direction:column;gap:12px}nav{gap:16px;flex-wrap:wrap;justify-content:center}.hero{min-height:72vh}section{padding:70px 5%}.cards{grid-template-columns:1fr}.title h2{font-size:34px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">STUDIO ÉLÉGANCE</div>
+<nav>
+<a href="#services">Services</a><a href="#about">À propos</a><a href="#contact">Contact</a>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div class="hero-box">
+<div class="eyebrow">Beauté • Bien-être • Élégance</div>
+<h1>Révélez votre élégance.</h1>
+<p>Un espace dédié à la beauté et au bien-être, pensé pour prendre soin de vous dans une atmosphère douce et raffinée.</p>
+<a class="btn" href="#contact">Prendre contact</a>
+</div>
+</section>
+<section id="services">
+<div class="title"><h2>Nos services</h2><p>Des prestations imaginées pour vous offrir un moment de détente et de confiance.</p></div>
+<div class="cards">
+<div class="card"><h3>Soins visage</h3><p>Des soins adaptés pour prendre soin de votre peau et retrouver un teint éclatant.</p></div>
+<div class="card"><h3>Beauté</h3><p>Des prestations beauté réalisées avec précision, dans un cadre élégant et chaleureux.</p></div>
+<div class="card"><h3>Bien-être</h3><p>Un moment pour ralentir, vous détendre et profiter d'une parenthèse rien qu'à vous.</p></div>
+</div>
+</section>
+<section id="about">
+<div class="about"><div class="title"><h2>À propos</h2></div><p>Studio Élégance est un exemple de site vitrine créé par Nikomar pour présenter une activité de beauté de manière moderne, claire et professionnelle.</p></div>
+</section>
+<section id="contact" class="contact">
+<div class="title"><h2>Envie d'un moment pour vous ?</h2><p>Contactez-nous pour découvrir nos prestations et organiser votre rendez-vous.</p><a class="btn" href="mailto:contact@studio-elegance.fr">Nous contacter</a></div>
+</section>
+</main>
+<footer>© 2026 Studio Élégance — Site démo créé par Nikomar</footer>
+<div class="demo">Projet démo Nikomar</div>
+</body>
+</html>
